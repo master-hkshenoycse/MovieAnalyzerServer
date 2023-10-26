@@ -3,7 +3,7 @@ import socketserver
 import cgi
 from result_actor import get_results_display
 from result_director import get_director_results_display
-
+import sys
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
@@ -22,8 +22,35 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         if self.path == '/summary_search':
             self.path = 'resources/summary_search.html'
-            
 
+        if self.path == '/summary_search':
+            self.path = 'resources/summary_search.html'
+
+
+        if self.path == '/summary_search_top15country':
+            self.path = 'resources/summary_search_top15country.html'
+
+
+        if self.path == '/summary_search_content_year':
+            self.path = 'resources/summary_search_content_year.html'
+
+        if self.path == '/summary_search_top_directors':
+            self.path = 'resources/summary_search_top_directors.html'
+
+        if self.path == '/summary_search_rating':
+            self.path = 'resources/summary_search_rating.html'
+
+        if self.path == '/summary_search_top_actors_movie':
+            self.path = 'resources/summary_search_top_actors_movie.html'
+
+        if self.path == '/summary_search_top_actors_show':
+            self.path = 'resources/summary_search_top_actors_show.html'
+        
+        
+        
+        
+        
+        
         #handle queries 
         if '?' in self.path:
             query_type=self.path.split('?')[0].replace('/','')
@@ -50,7 +77,14 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 # Create an object of the above class
 handler_object = MyHttpRequestHandler
 
-PORT = 8001
+n = len(sys.argv)
+
+if n != 2:
+    print("Incorrect number of arguments")
+    exit()
+
+PORT = int(sys.argv[1])
+print(PORT)
 my_server = socketserver.TCPServer(("", PORT), handler_object)
 
 # Star the server
