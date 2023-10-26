@@ -7,30 +7,40 @@ import matplotlib.pyplot as plt
 
 def get_results_display(name):
     data_netflix=pd.read_csv('data/netflix_titles.csv')
-    data_amazon=pd.read_csv('data/amazon_prime_titles.csv')
-    data_disney=pd.read_csv('data/disney_plus_titles.csv')
-
-
     data_netflix=data_netflix.dropna()
 
+    #clear all the previoud plots
     plt.clf()
 
+    #subsettting the data for actor
     data_actor=data_netflix[data_netflix['cast'].str.contains(name)]
 
-    x_label=[1,2,3,4,5,6,7,8,9,10]
-    y_cnt=[0,0,0,0,0,0,0,0,0,0]
-
-    for r in data_actor['rating']:
-        y_cnt[r-1]=y_cnt[r-1]+1
-
-
-
-    plt.bar(x_label, y_cnt, color ='maroon',width = 0.4)
-    plt.xlabel('Rating Range')
-    plt.ylabel('No of Shows')
-    plt.title('Rating Distribution for Actor')
-    plt.savefig('images/actor_rating_results.jpg')
+    #getting results for movies by actor for rating distribution
+    netflix_movies_df=data_actor[data_actor.type=='Movie']
+    count_movies = netflix_movies_df.groupby('rating')['title'].count().reset_index()
+    plt.figure(figsize=(12,7))
+    plt.title('Amount of Movies by Actor vs Rating ')
+    plt.xlabel("Rating")
+    plt.ylabel("Amount of Movies")
+    plt.bar(count_movies.rating, count_movies.title)
+    plt.legend(['Movies'])
+    plt.title('Movie Rating Distribution for Actor')
+    plt.savefig('images/movie_actor_rating_results.jpg')
     plt.clf()
+
+    #getting results for TV-shows by actor for rating distribution
+    netflix_shows_df=data_actor[data_actor.type=='TV Show']
+    count_shows = netflix_shows_df.groupby('rating')['title'].count().reset_index()
+    plt.figure(figsize=(12,7))
+    plt.title('Amount of TV-shows by Actor vs Rating ')
+    plt.xlabel("Rating")
+    plt.ylabel("Amount of TV-shows")
+    plt.bar(count_shows.rating, count_shows.title)
+    plt.legend(['TV Shows'])
+    plt.title('TV Shows Distribution for Actor')
+    plt.savefig('images/tvshows_actor_rating_results.jpg')
+    plt.clf()
+
 
     result_year=data_actor['release_year'].value_counts(ascending=True)
 
@@ -41,7 +51,7 @@ def get_results_display(name):
 
     plt.bar(year_list,cnt_list)
     plt.xlabel('Relase Year')
-    plt.ylabel('No of Shows')
+    plt.ylabel('No of releases')
     plt.title('Release Year Distribution for Actor')
     plt.savefig('images/actor_release_results.jpg')
 
@@ -65,7 +75,34 @@ def get_results_display(name):
 
     plt.bar(genre_list,cnt_list)
     plt.xlabel('Genre')
-    plt.ylabel('No of Shows')
+    plt.ylabel('No of Releases')
     plt.title('Genre Distribution for Actor')
     plt.savefig('images/actor_genre_results.jpg')
+    plt.clf()
 
+
+    #5 latest releases by actor
+    """data_actor=data_actor.sort_values(by=['release_year'],ascending=False)
+    data_latest=data_actor.head(5)
+    data_latest=data_latest[['title','release_year','director']]
+
+
+
+    data=[]
+    columns = ['title','release_year','director']
+
+    for i, j in data_latest.iterrows(): 
+        curr=[]
+        curr.append(j['title'])
+        curr.append(str(j['release_year']))
+        curr.append(j['director'])
+        data.append(curr)
+
+    plt.figure(figsize=(12,7))
+    fig, axs = plt.subplots(1, 1)
+
+    columns = ("title", "release_year", "director")
+    axs.axis('tight')
+    axs.axis('off')
+    the_table = axs.table(cellText=data, colLabels=columns, loc='center')
+    plt.savefig('/images/latest_titles_by_actor.jpg')"""

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Movie DB Analysizer Based on Netlfix Data</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+ 
+
+  
+  <h2>Search Stats about your Favourate Movie</h2>
+
+
+    
+
+    
+
+  
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Data Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+           font-family:  "Times New Roman";
+           color: white;
+        }
+        h1{
+           padding:20px;
+        }
+        .left {
+           height: 100%;
+           width: 25%;
+           position: fixed;
+           z-index: 1;
+           top: 0;
+           overflow-x: hidden;
+           padding-top: 20px;
+        }
+        .right {
+           height: 100%;
+           width: 75%;
+           position: fixed;
+           z-index: 1;
+           top: 0;
+           overflow-x: hidden;
+           padding-top: 20px;
+        }
+        .left {
+           left: 0;
+           background-color: rgb(35, 1, 90);
+        }
+        .right {
+           right: 0;
+           background-color: rgb(35, 1, 90);
+        }
+        .centered {
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           text-align: center;
+        }
+        .centered img {
+           width: 150px;
+           border-radius: 50%;
+        }
+	button
+	{
+		width:300px;
+		height:40px;
+	}
+     </style>
+</head>
+<body>
+
+  
+
+    <div class="left">
+        <h1>Netflix Summary Data Analysis</h1>
+        <button type="button" class="btn btn-danger" onclick="window.location.href='/images/1'">Top 15 Countries Contributor on Netflix</button><br><br>
+        <button type="button" class="btn btn-danger" onclick="window.location.href='/images/2'">Total content added across all years</button><br><br>
+        <button type="button" class="btn btn-danger" onclick="window.location.href='/images/6'">Content distribution by rating</button><br><br>
+        <button type="button" class="btn btn-danger" onclick="window.location.href='/images/7'">Top 10 actors in movies</button><br><br>
+        <button type="button" class="btn btn-danger" onclick="window.location.href='/images/8'">Top 10 actors in TV Shows</button><br><br>
+        <button type="button" class="btn btn-danger" onclick="window.location.href='/'">Home Page</button><br><br>
+        
+    </div>
+</body>
+</html>
