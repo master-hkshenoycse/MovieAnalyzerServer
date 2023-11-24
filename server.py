@@ -46,7 +46,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         if self.path == '/summary_search_top_actors_show':
             self.path = 'resources/summary_search_top_actors_show.html'
         
-        
+        if self.path == '/actor_recent_movies':
+            self.path = 'resources/actor_recent_movies.html'
         
         
         

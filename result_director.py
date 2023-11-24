@@ -14,7 +14,7 @@ def get_director_results_display(name):
 
     #subsettting the data for Director
     data_Director=data_netflix[data_netflix['director'].str.contains(name)]
-
+ 
     #getting results for movies by Director for rating distribution
     netflix_movies_df=data_Director[data_Director.type=='Movie']
     count_movies = netflix_movies_df.groupby('rating')['title'].count().reset_index()

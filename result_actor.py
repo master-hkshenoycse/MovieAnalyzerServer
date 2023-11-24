@@ -82,27 +82,34 @@ def get_results_display(name):
 
 
     #5 latest releases by actor
-    """data_actor=data_actor.sort_values(by=['release_year'],ascending=False)
+    data_actor=data_actor.sort_values(by=['release_year'],ascending=False)
     data_latest=data_actor.head(5)
     data_latest=data_latest[['title','release_year','director']]
 
+    Func = open("resources/actor_recent_movies.html","w") 
+    
+    # Adding input data to the HTML file 
+
+    html_str="<html><head><title>Recent relases for actor</title></head>"
+    html_str+="<body>" 
+    html_str+="<table><tr><th>Title</th><th>Release Year</th><th>Director</th></tr>"
 
 
-    data=[]
-    columns = ['title','release_year','director']
+                
 
     for i, j in data_latest.iterrows(): 
-        curr=[]
-        curr.append(j['title'])
-        curr.append(str(j['release_year']))
-        curr.append(j['director'])
-        data.append(curr)
+        title=j['title']
+        release_year=str(j['release_year'])
+        print(release_year)
+        director=j['director']
+        html_str+="<tr>"
+        html_str+="<td>"+title+"</td>"
+        html_str+="<td>"+release_year+"</td>"
+        html_str+="<td>"+director+"</td>"
+        html_str+="</tr>"
 
-    plt.figure(figsize=(12,7))
-    fig, axs = plt.subplots(1, 1)
+    html_str+="</table></body></html>"
 
-    columns = ("title", "release_year", "director")
-    axs.axis('tight')
-    axs.axis('off')
-    the_table = axs.table(cellText=data, colLabels=columns, loc='center')
-    plt.savefig('/images/latest_titles_by_actor.jpg')"""
+    Func.write(html_str)
+    Func.close() 
+
