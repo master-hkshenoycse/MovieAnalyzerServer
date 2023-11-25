@@ -90,7 +90,7 @@ def get_results_display(name):
     
     # Adding input data to the HTML file 
 
-    html_str="<html><head><title>Recent relases for actor</title></head>"
+    html_str="<html><head><title>Recent relases for actor searched</title></head>"
     html_str+="<body>" 
     html_str+="<table><tr><th>Title</th><th>Release Year</th><th>Director</th></tr>"
 
